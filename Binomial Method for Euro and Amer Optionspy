@@ -28,15 +28,11 @@ def calc_C_n(E,S_n,otype):
 def calc_next(C_n,pstar,r,T,n,ostyle,otype,u,d,S,E,j):
     C_nnew=[]
     for i in range(0,len(C_n)-1):
-        print("Number in list of C_n+1: ",i)
         if ostyle==0:
             C_nnew.append(exp(-r*T/n)*(pstar*C_n[i]+(1-pstar)*C_n[i+1]))
         elif ostyle==1:
             S_n=calc_S_n(u,d,S,n-j-1)
-            print("S_n-j-1: ",S_n)
             if otype==0:
-                print("S_n-j[i]: ",S_n[i])
-                print("C_n+1 entry i: ",max([exp(-r*T/n)*(pstar*C_n[i]+(1-pstar)*C_n[i+1]),S_n[i]-E]))
                 C_nnew.append(max([exp(-r*T/n)*(pstar*C_n[i]+(1-pstar)*C_n[i+1]),S_n[i]-E]))
             elif otype==1:
                 C_nnew.append(max([exp(-r*T/n)*(pstar*C_n[i]+(1-pstar)*C_n[i+1]),E-S_n[i]]))
@@ -152,7 +148,6 @@ S_n=calc_S_n(u,d,S,n)
 C_n=calc_C_n(E,S_n,otype)
 del S_n
 for j in range(0,n):
-    print("Iteration: ",j)
     C_n=calc_next(C_n,pstar,r,T,n,ostyle,otype,u,d,S,E,j)
     progSV.set(str(round((j/n)*100,2))+"%")
     top.update()
