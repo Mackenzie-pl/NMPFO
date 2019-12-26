@@ -29,7 +29,7 @@ def calc_C_n(E,S_n,otype,B,E1,E2):
             elif S_i<E:
                 C_n.append(0)
         elif otype==3:
-            C_n.append(max([S_i-E1,0])+max([S_i-E2,0]))
+            C_n.append(max([S_i-E1,0])-max([S_i-E2,0]))
         elif otype==4:
             if S_i>E:
                 C_n.append(S_i)
