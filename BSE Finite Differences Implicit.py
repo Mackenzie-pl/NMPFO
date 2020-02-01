@@ -123,8 +123,6 @@ for j in range(0,199):
 diagonals=[odiag,ldiag,odiag]
 A=diags(diagonals,[-1,0,1]).toarray()
 A[0,1]=1
-A[1,0]=1
-A[len(A)-1,len(A)-2]=1
 A[len(A)-2,len(A)-1]=1
 
 for j in range(1,int((pow(vol,2)*T)/(2*dtau))):
