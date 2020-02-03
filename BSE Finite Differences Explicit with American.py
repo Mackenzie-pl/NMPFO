@@ -125,6 +125,17 @@ while True:
 
 while True:
     try:
+        div=float(input("Please enter the dividend yield as a decimal: "))
+    except ValueError:
+        print("Dividend yield must be a decimal.")
+        continue
+    else:
+        if div>=0:
+            break
+        print("Dividend yield must be greater than or equal to 0.")
+
+while True:
+    try:
         S=float(input("Please enter the starting stock value as a decimal: "))
     except ValueError:
         print("Starting stock value must be a decimal.")
@@ -152,6 +163,9 @@ while True:
             break
         print("Length of the option must be positive.")
 
+r=r-div
+if div!=0:
+    E=E/(1-div)
 dx=calcdx(S,E,n)
 dtau=calcdtau(dx,vol,T,n)
 k=calck(r,vol)
@@ -164,5 +178,5 @@ for j in range(0,int((pow(vol,2)*T)/(2*dtau))):
     Sj=Sjnew
 
 ux=Sj[int(len(Sj)/2)]
-C=pow(E,0.5*(1+k))*pow(S,0.5*(1-k))*exp((-pow(k+1,2)*pow(vol,2)*T)/8)*ux
+C=(1-div)*pow(E,0.5*(1+k))*pow(S,0.5*(1-k))*exp((-pow(k+1,2)*pow(vol,2)*T)/8)*ux
 print("Option Priced at: ",C)

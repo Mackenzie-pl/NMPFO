@@ -76,13 +76,15 @@ while True:
         print("Implied volatility must be greater than or equal to 0.")
 
 while True:
-        try:
-            E=float(input("Please enter the options strike price as a decimal: "))
-        except ValueError:
-            print("Strike price must be a decimal.")
-            continue
-        else:
+    try:
+        div=float(input("Please enter the dividend yield as a decimal: "))
+    except ValueError:
+        print("Dividend yield must be a decimal.")
+        continue
+    else:
+        if div>=0:
             break
+        print("Dividend yield must be greater than or equal to 0.")
 
 while True:
     try:
@@ -92,6 +94,15 @@ while True:
         continue
     else:
         break
+
+while True:
+        try:
+            E=float(input("Please enter the options strike price as a decimal: "))
+        except ValueError:
+            print("Strike price must be a decimal.")
+            continue
+        else:
+            break
 
 while True:
     try:
@@ -104,6 +115,9 @@ while True:
             break
         print("Length of the option must be positive.")
 
+r=r-div
+if div!=0:
+    E=E/(1-div)
 dx=calcdx(S,E,n)
 dtau=calcdtau(vol,T,n)
 k=calck(r,vol)
@@ -135,5 +149,5 @@ for j in range(1,int((pow(vol,2)*T)/(2*dtau))):
     u=solve(A,b)
 
 ux=u[int(len(u)/2)]
-C=pow(E,0.5*(1+k))*pow(S,0.5*(1-k))*exp((-pow(k+1,2)*pow(vol,2)*T)/8)*ux
+C=(1-div)*pow(E,0.5*(1+k))*pow(S,0.5*(1-k))*exp((-pow(k+1,2)*pow(vol,2)*T)/8)*ux
 print("Option Priced at: ",C)
