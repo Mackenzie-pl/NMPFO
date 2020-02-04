@@ -1,0 +1,6 @@
+Future Additions and Tasks:
+Clean up python code.
+Write code in C++.
+Theta method for Finite Difference model.
+Pricing options on futures and other exotic options.
+Considering more futuristic and newly developing models.
