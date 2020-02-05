@@ -183,6 +183,12 @@ for j in range(0,int((pow(vol,2)*T)/(2*dtau))):
     b.append(uXT(S,E,k,j,dtau,otype,dx,ostyle))
     b=asarray(b)
     Iu=solve(A,b)
+    if ostyle==1:
+        for i in range(1,199):
+            if otype==0:
+                Iu[i]=max([Iu[i],exp(pow((k+1)/2,2)*j*dtau)*max([exp(0.5*(k+1)*(log(S/E)-(100-i)*dx))-exp(0.5*(k-1)*(log(S/E)-(100-i)*dx)),0])])
+            elif otype==1:
+                Iu[i]=max([Iu[i],exp(pow((k+1)/2,2)*j*dtau)*max([exp(0.5*(k+1)*(log(S/E)-(100-i)*dx))-exp(0.5*(k-1)*(log(S/E)-(100-i)*dx)),0])])
     Eu=calc_S_jnew(u,a,S,E,dx,j,dtau,k,otype,ostyle)
     for i in range(0,200):
         u[i]=0.5*(Eu[i]+Iu[i])
