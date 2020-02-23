@@ -4,3 +4,7 @@ Write code in C++.
 Theta method for Finite Difference model.
 Pricing options on futures and other exotic options.
 Considering more futuristic and newly developing models.
+Add module import checks to all files.
+Add error graphing and time graphing scripts.
+Add paper
+Add error analysis
